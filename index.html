@@ -12,17 +12,16 @@
       font-family: 'Arial', sans-serif;
     }
 
+    html, body {
+      height: 100%;
+      overflow: hidden; /* mencegah scroll */
+    }
+
     body {
       background: url('IMAGE/pt.jpg') center center/cover no-repeat;
-      min-height: 100vh;
       color: white;
       text-align: center;
       position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
     }
 
     .overlay {
@@ -35,7 +34,6 @@
       z-index: -1;
     }
 
-    /* HEADER (TETAP DI KIRI ATAS) */
     .header {
       position: absolute;
       top: 20px;
@@ -59,9 +57,19 @@
       white-space: nowrap;
     }
 
-    /* CONTENT UTAMA (DESKTOP) */
+    .container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
     .welcome {
-      margin: 80px 0 50px;
+      margin-bottom: 30px;
       padding: 0 20px;
     }
 
@@ -70,11 +78,14 @@
       font-weight: bold;
       margin-bottom: 15px;
       line-height: 1.2;
+      animation: slideInLeft 0.8s ease-out;
     }
 
     .welcome h3 {
       font-size: 29px;
       font-weight: normal;
+      animation: slideInLeft 0.8s ease-out 0.2s forwards;
+      opacity: 0;
     }
 
     .button-container {
@@ -83,6 +94,8 @@
       justify-content: center;
       width: 100%;
       max-width: 600px;
+      animation: fadeIn 1s ease-out 0.4s forwards;
+      opacity: 0;
     }
 
     .btn {
@@ -106,21 +119,6 @@
       transform: scale(0.95);
     }
 
-    /* Animasi */
-    .welcome h2 {
-      animation: slideInLeft 0.8s ease-out;
-    }
-    
-    .welcome h3 {
-      animation: slideInLeft 0.8s ease-out 0.2s forwards;
-      opacity: 0;
-    }
-    
-    .button-container {
-      animation: fadeIn 1s ease-out 0.4s forwards;
-      opacity: 0;
-    }
-
     @keyframes slideInLeft {
       from {
         transform: translateX(-30px);
@@ -137,21 +135,12 @@
       to { opacity: 1; }
     }
 
-    /* KHUSUS TAMPILAN MOBILE SAJA (di bawah 600px) */
     @media only screen and (max-width: 600px) {
-      body {
-        justify-content: flex-start;
-        padding-top: 80px; /* Memberi ruang untuk header */
-        overflow: hidden;
-        height: 100vh;
-      }
-
-      /* Header tetap di kiri atas */
       .header {
         top: 15px;
         left: 15px;
       }
-      
+
       .header img {
         width: 30px;
         height: 30px;
@@ -159,13 +148,6 @@
 
       .header-title h1 {
         font-size: 14px;
-      }
-
-      /* Penyesuaian konten utama untuk mobile */
-      .welcome {
-        margin: 0 0 30px 0;
-        padding: 0 15px;
-        width: 100%;
       }
 
       .welcome h2 {
@@ -182,8 +164,6 @@
         gap: 15px;
         width: 100%;
         padding: 0 20px;
-        margin-top: auto;
-        margin-bottom: 30px;
       }
 
       .btn {
@@ -197,7 +177,7 @@
 <body>
   <div class="overlay"></div>
 
-  <!-- Header tetap di kiri atas -->
+  <!-- Header -->
   <div class="header">
     <img src="IMAGE/lgo.jpg" alt="Logo PLN">
     <div class="header-title">
@@ -205,15 +185,17 @@
     </div>
   </div>
 
-  <!-- Konten utama -->
-  <div class="welcome">
-    <h2>Selamat Datang di Web Absensi</h2>
-    <h3>Silakan Check In atau Check Out</h3>
-  </div>
+  <!-- Konten Utama -->
+  <div class="container">
+    <div class="welcome">
+      <h2>Selamat Datang di Web Absensi</h2>
+      <h3>Silakan Check In atau Check Out</h3>
+    </div>
 
-  <div class="button-container">
-    <a href="checkin.html" class="btn">CHECK IN</a>
-    <a href="checkout.html" class="btn">CHECK OUT</a>
+    <div class="button-container">
+      <a href="checkin.html" class="btn">CHECK IN</a>
+      <a href="checkout.html" class="btn">CHECK OUT</a>
+    </div>
   </div>
 </body>
 </html>
